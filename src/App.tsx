@@ -1,7 +1,13 @@
 import './App.css'
 
+import Button from './component/button'
+
 function App() {
-	return <div>:)</div>
+	return (
+		<div>
+			<Button />
+		</div>
+	)
 }
 
 export default App

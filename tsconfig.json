@@ -18,7 +18,13 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+
+		/*상대 경로 설정*/
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
 	},
 	"include": ["src", "**/*.ts", "**/*.tsx", ".eslintrc.cjs"],
 	"references": [{ "path": "./tsconfig.node.json" }]
