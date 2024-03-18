@@ -1,5 +1,17 @@
 module.exports = {
-	plugins: ['react', 'simple-import-sort', 'prettier', '@typescript-eslint'],
+	extends: [
+		'eslint:recommended',
+		'plugin:react/recommended',
+		'plugin:@typescript-eslint/recommended',
+		'prettier',
+	],
+	plugins: [
+		'react',
+		'simple-import-sort',
+		'prettier',
+		'@typescript-eslint',
+		'unused-imports',
+	],
 	ignorePatterns: ['vite.config.ts', 'vite-env.d.ts'],
 	rules: {
 		'simple-import-sort/imports': 'error',
@@ -12,19 +24,27 @@ module.exports = {
 		'no-empty-function': 'error',
 		'no-duplicate-imports': 'error',
 		'newline-after-var': 'error',
+		// eslint-disable-next-line no-dupe-keys
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
+		'unused-imports/no-unused-imports-ts': ['error'],
+		'react/react-in-jsx-scope': 'off',
 	},
 	overrides: [
 		{
-			files: ['**/*.ts?(x)'],
-			parser: '@typescript-eslint/parser',
-		},
-		{
-			files: ['**/*.js?(x)'],
+			env: {
+				node: true,
+			},
+			files: ['.eslintrc.{js,cjs,ts}'],
 			parserOptions: {
 				sourceType: 'module',
-				ecmaVersion: 2015,
+				createDefaultProgram: true,
 			},
 		},
 	],
+	parser: '@typescript-eslint/parser',
+	parserOptions: {
+		ecmaVersion: 'latest',
+		sourceType: 'module',
+		project: './tsconfig.json',
+	},
 }
