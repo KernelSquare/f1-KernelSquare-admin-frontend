@@ -1,13 +1,7 @@
 import './App.css'
 
-import Button from './component/button'
-
 function App() {
-	return (
-		<div>
-			<Button />
-		</div>
-	)
+	return <div>:) </div>
 }
 
 export default App
