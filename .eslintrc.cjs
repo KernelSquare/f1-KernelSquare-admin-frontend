@@ -4,6 +4,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
+		'plugin:storybook/recommended',
 	],
 	plugins: [
 		'react',
