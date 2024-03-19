@@ -5,10 +5,14 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from './app/routes/Routing'
 import GlobalStyles from './app/styles/global'
+import { worker } from './entities/mocks/borwser'
 
 const queryClient = new QueryClient()
 
 function App() {
+	if (import.meta.env.NODE_ENV === 'development') {
+		worker.start()
+	}
 	return (
 		<div>
 			<GlobalStyles />
