@@ -5,21 +5,37 @@ import NotificationManagementPage from '@/pages/notification/Page'
 import AnswerManagementPage from '@/pages/qna/answers/Page'
 import QnAMainPage from '@/pages/qna/Page'
 import QuestionManagementPage from '@/pages/qna/questions/Page'
+import SignInPage from '@/pages/sign-in/Page'
+
+import PrivateRoute from './PrivateRoute'
 
 const router = createBrowserRouter([
 	{
-		path: '/',
-		element: <DashboardPage />,
-	},
-	{
-		path: 'qna',
-		element: <QnAMainPage />,
+		element: (
+			<>
+				<PrivateRoute />
+			</>
+		),
 		children: [
-			{ path: 'questions', element: <QuestionManagementPage /> },
-			{ path: 'answers', element: <AnswerManagementPage /> },
+			{
+				path: '/',
+				element: <DashboardPage />,
+			},
+			{
+				path: 'qna',
+				element: <QnAMainPage />,
+				children: [
+					{ path: 'questions', element: <QuestionManagementPage /> },
+					{ path: 'answers', element: <AnswerManagementPage /> },
+				],
+			},
+			{ path: '/notification', element: <NotificationManagementPage /> },
 		],
 	},
-	{ path: '/notification', element: <NotificationManagementPage /> },
+	{
+		path: '/signIn',
+		element: <SignInPage />,
+	},
 ])
 
 export default router
