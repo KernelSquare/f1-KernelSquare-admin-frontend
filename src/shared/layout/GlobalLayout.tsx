@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import Header from './header/Header'
+import Header from './Header/Header'
 import SideNav from './side-nav/SideNav'
 
 const GlobalLayout = () => {
