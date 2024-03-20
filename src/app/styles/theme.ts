@@ -53,9 +53,9 @@ export const BORDERWIDTH = {
 
 export const BORDERRADIUS = {
 	none: '0px',
-	xsmall: '1px',
-	small: '2px',
-	medium: '4px',
+	xsmall: '2px',
+	small: '4px',
+	medium: '6px',
 	large: '8px',
 	xlarge: '12px',
 	'2xlarge': '16px',
