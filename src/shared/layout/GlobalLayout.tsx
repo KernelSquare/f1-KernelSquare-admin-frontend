@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
-import Header from './Header/Header'
 import Nav from './Nav/Nav'
+import { Header } from './ui/Header/Header'
 
 const GlobalLayout = () => {
 	return (
