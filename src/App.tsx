@@ -10,9 +10,10 @@ import { worker } from './entities/mocks/borwser'
 const queryClient = new QueryClient()
 
 function App() {
-	if (import.meta.env.NODE_ENV === 'development') {
+	if (import.meta.env.VITE_API_MOCKING === 'enabled') {
 		worker.start()
 	}
+
 	return (
 		<div>
 			<GlobalStyles />
