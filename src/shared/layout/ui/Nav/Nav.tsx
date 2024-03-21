@@ -2,117 +2,138 @@
 import './nav.css'
 
 import { css } from '@emotion/react'
-import { useNavigate } from 'react-router-dom'
+import { PropsWithChildren } from 'react'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
-import Icon from '@/widgets/Icons/Icon'
-import { iconSizeKey } from '@/widgets/Icons/iconInventory'
+import CustomAccordion from '@/widgets/Accordion/Accordion'
 
-import navItems, { Items } from './navItems'
+import navItems, { Items } from './constants/navItems'
+import NavTab from './ui/NavTab'
 
-export const Nav = () => {
+const Nav = () => {
+	return (
+		<NavWrapper>
+			<NavLogoBox />
+			<NavTabBox />
+		</NavWrapper>
+	)
+}
+
+const NavWrapper = ({ children }: PropsWithChildren) => (
+	<div
+		css={css({
+			background: `linear-gradient(0deg, ${PALETTE['primary-1000']}, ${PALETTE['primary-900']})`,
+			color: PALETTE['pale-050'],
+			height: '100vh',
+			width: '240px',
+			position: 'fixed',
+			top: '0',
+			left: '0',
+			zIndex: '1',
+			display: 'block',
+			boxShadow: '0 0 45px 0 rgba(0, 0, 0, .6)',
+			borderRadius: `${BORDERRADIUS.medium}`,
+			margin: '20px 32px 0 20px',
+		})}
+	>
+		{children}
+	</div>
+)
+
+const NavLogoBox = () => {
+	const logoText = 'KERNEL SQUARE'
+
 	return (
 		<div
 			css={css({
-				background: `linear-gradient(0deg, ${PALETTE['primary-1000']}, ${PALETTE['primary-900']})`,
-				color: PALETTE['pale-050'],
-				height: '96vh',
-				width: '230px',
-				position: 'fixed',
-				top: '0',
-				left: '0',
-				zIndex: '1',
-				display: 'block',
-				boxShadow: '0 0 45px 0 rgba(0, 0, 0, .6)',
-				borderRadius: `${BORDERRADIUS.medium}`,
-				margin: '20px',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				padding: '20px 0',
 			})}
 		>
+			<div>
+				<img src="/logo.svg" alt="kernelsquare 로고" />
+			</div>
 			<div
 				css={css({
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					padding: '20px 0',
+					marginLeft: '5px',
+					fontWeight: FONTWEIGHT.bold,
+					fontSize: FONTSIZE.xlarge,
 				})}
 			>
-				<div>
-					<img src="/logo.svg" alt="kernelsquare 로고" />
-				</div>
-				<div
-					css={css({
-						marginLeft: '5px',
-						fontWeight: FONTWEIGHT.bold,
-						fontSize: FONTSIZE.xlarge,
-					})}
-				>
-					KERNEL SQUARE
-				</div>
-			</div>
-			<div>
-				{navItems.map(item => (
-					<ul
-						key={item.title}
-						css={css({
-							margin: '0px',
-							padding: '0px',
-							fontWeight: FONTWEIGHT.medium,
-						})}
-					>
-						<NavTab item={item} depth={1} iconSize="medium" />
-						{item.children &&
-							item.children.map(child => (
-								<NavTab
-									item={child}
-									depth={2}
-									key={child.title}
-									iconSize="xsmall"
-								/>
-							))}
-					</ul>
-				))}
+				{logoText}
 			</div>
 		</div>
 	)
 }
 
-type NavTabProps = {
-	item: Items
-	iconSize: iconSizeKey
-	depth: number
-}
-
-const NavTab = ({ item, depth, iconSize }: NavTabProps) => {
-	const tabStyle = (isUrl: boolean) => css`
-		cursor: ${isUrl ? 'pointer' : 'default'};
-		padding: 10px ${23 * depth}px;
-		display: flex;
-		justify-contents: center;
-		:hover {
-			background-color: rgba(244, 244, 244, 0.18);
-			background-opacity: '18%';
-		}
-	`
-	const navigate = useNavigate()
-	const handleLocation = (url: string) => {
-		if (!url) return
-		navigate(url)
-	}
-
-	return (
-		<li css={tabStyle(!!item.url)} onClick={() => handleLocation(item.url)}>
-			<Icon
-				iconName={item.icon}
-				iconSizeKey={iconSize}
-				iconColor={PALETTE['pale-050']}
-			/>
-			<div
+const NavTabBox = () => (
+	<div>
+		{navItems.map(item => (
+			<ul
+				key={item.title}
 				css={css({
-					marginLeft: '10px',
+					margin: '0px',
+					padding: '0px',
+					fontWeight: FONTWEIGHT.medium,
 				})}
 			>
-				{item.title}
-			</div>
-		</li>
-	)
+				{!item.children && <NavTabWithoutChildren item={item} />}
+				{item.children && <NavTabWithChildren item={item} />}
+			</ul>
+		))}
+	</div>
+)
+
+export default Nav
+
+type ItemProps = {
+	item: Items
 }
+
+type ChildProps = {
+	child: Items[]
+}
+
+const NavTabWithoutChildren = ({ item }: ItemProps) => (
+	<NavTab item={item} depth={1} iconSize="medium" />
+)
+
+const NavTabWithChildren = ({ item }: ItemProps) => {
+	if (item.children)
+		return (
+			<CustomAccordion
+				allowToggle
+				pb={4}
+				buttonChild={<NavTabAccordionButton item={item} />}
+				panelChild={<NavTabAccordionPanel child={item.children} />}
+				buttonStyle={{
+					color: PALETTE['pale-050'],
+					fontSize: FONTSIZE.base,
+					padding: 0,
+					outline: 'none',
+					border: 'none',
+					':hover': {
+						border: 'none',
+						backgroundColor: 'rgba(244, 244, 244, 0.18)',
+						backgroundOpacity: '18%',
+						borderRadius: 0,
+					},
+					':focus': {
+						outline: 'none',
+						border: 'none',
+					},
+				}}
+			/>
+		)
+}
+
+const NavTabAccordionButton = ({ item }: ItemProps) => (
+	<NavTab depth={1} iconSize="medium" item={item} />
+)
+
+const NavTabAccordionPanel = ({ child }: ChildProps) =>
+	child.map(item => (
+		<NavTab item={item} depth={2} key={item.title} iconSize="xsmall" />
+	))
