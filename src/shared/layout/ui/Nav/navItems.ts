@@ -11,7 +11,7 @@ const navItems: Items[] = [
 	{
 		title: '대시보드',
 		icon: 'dashboard',
-		url: '/dashboard',
+		url: '/',
 	},
 	{
 		title: '개발자 Q&A 관리',

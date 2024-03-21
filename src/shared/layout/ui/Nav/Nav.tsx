@@ -2,6 +2,7 @@
 import './nav.css'
 
 import { css } from '@emotion/react'
+import { useNavigate } from 'react-router-dom'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
 import Icon from '@/widgets/Icons/Icon'
@@ -82,8 +83,8 @@ type NavTabProps = {
 }
 
 const NavTab = ({ item, depth, iconSize }: NavTabProps) => {
-	const tabStyle = css`
-		cursor: pointer;
+	const tabStyle = (isUrl: boolean) => css`
+		cursor: ${isUrl ? 'pointer' : 'default'};
 		padding: 10px ${23 * depth}px;
 		display: flex;
 		justify-contents: center;
@@ -92,9 +93,14 @@ const NavTab = ({ item, depth, iconSize }: NavTabProps) => {
 			background-opacity: '18%';
 		}
 	`
+	const navigate = useNavigate()
+	const handleLocation = (url: string) => {
+		if (!url) return
+		navigate(url)
+	}
 
 	return (
-		<li css={tabStyle}>
+		<li css={tabStyle(!!item.url)} onClick={() => handleLocation(item.url)}>
 			<Icon
 				iconName={item.icon}
 				iconSizeKey={iconSize}

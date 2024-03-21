@@ -16,12 +16,7 @@ interface HeaderProps {
 	onCreateAccount?: () => void
 }
 
-export const Header = ({
-	user,
-	onLogin,
-	onLogout,
-	onCreateAccount,
-}: HeaderProps) => (
+export const Header = ({ onCreateAccount }: HeaderProps) => (
 	<header
 		css={css({
 			position: 'absolute',
