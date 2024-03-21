@@ -3,6 +3,7 @@ import './nav.css'
 
 import { css } from '@emotion/react'
 import { PropsWithChildren } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
 import CustomAccordion from '@/widgets/Accordion/Accordion'
@@ -96,9 +97,18 @@ type ChildProps = {
 	child: Items[]
 }
 
-const NavTabWithoutChildren = ({ item }: ItemProps) => (
-	<NavTab item={item} depth={1} iconSize="medium" />
-)
+const NavTabWithoutChildren = ({ item }: ItemProps) => {
+	const location = useLocation()
+
+	return (
+		<NavTab
+			item={item}
+			depth={1}
+			iconSize="medium"
+			isSelected={location.pathname === item.url}
+		/>
+	)
+}
 
 const NavTabWithChildren = ({ item }: ItemProps) => {
 	if (item.children)
@@ -106,7 +116,7 @@ const NavTabWithChildren = ({ item }: ItemProps) => {
 			<CustomAccordion
 				allowToggle
 				pb={4}
-				buttonChild={<NavTabAccordionButton item={item} />}
+				buttonChild={<NavTabWithoutChildren item={item} />}
 				panelChild={<NavTabAccordionPanel child={item.children} />}
 				buttonStyle={{
 					color: PALETTE['pale-050'],
@@ -129,11 +139,16 @@ const NavTabWithChildren = ({ item }: ItemProps) => {
 		)
 }
 
-const NavTabAccordionButton = ({ item }: ItemProps) => (
-	<NavTab depth={1} iconSize="medium" item={item} />
-)
+const NavTabAccordionPanel = ({ child }: ChildProps) => {
+	const location = useLocation()
 
-const NavTabAccordionPanel = ({ child }: ChildProps) =>
-	child.map(item => (
-		<NavTab item={item} depth={2} key={item.title} iconSize="xsmall" />
+	return child.map(item => (
+		<NavTab
+			item={item}
+			depth={2}
+			key={item.title}
+			iconSize="xsmall"
+			isSelected={location.pathname === item.url}
+		/>
 	))
+}

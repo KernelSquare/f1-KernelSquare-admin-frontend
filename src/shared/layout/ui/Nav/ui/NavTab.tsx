@@ -11,17 +11,22 @@ type NavTabProps = {
 	item: Items
 	iconSize: iconSizeKey
 	depth: number
+	isSelected: boolean
 }
 
-const NavTab = ({ item, depth, iconSize }: NavTabProps) => {
+const NavTab = ({ item, depth, iconSize, isSelected }: NavTabProps) => {
 	const tabStyle = (isUrl: boolean) => css`
 		cursor: ${isUrl ? 'pointer' : 'default'};
 		padding: 10px ${23 * depth}px;
 		display: flex;
 		justify-contents: center;
+		background-color: ${isSelected
+			? 'rgba(244, 244, 244, 0.18)'
+			: 'transparent'};
 		:hover {
-			background-color: ${item.children ? 'none' : 'rgba(244, 244, 244, 0.18)'};
-			background-opacity: ${item.children ? 0 : '18%'};
+			background-color: ${item.children
+				? 'transparent'
+				: 'rgba(244, 244, 244, 0.18)'};
 		}
 	`
 	const navigate = useNavigate()
