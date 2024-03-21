@@ -1,10 +1,16 @@
 import { css } from '@emotion/react'
 
-import { baseStyle, iconDictionary, iconSize } from './iconInventory'
+import {
+	baseStyle,
+	iconDictionary,
+	iconDictionaryKey,
+	iconSize,
+	iconSizeKey,
+} from './iconInventory'
 
 type IconProps = {
-	iconName: keyof typeof iconDictionary
-	iconSizeKey: keyof typeof iconSize
+	iconName: iconDictionaryKey
+	iconSizeKey: iconSizeKey
 	iconColor: string
 }
 

@@ -1,6 +1,8 @@
-type Items = {
+import { iconDictionaryKey } from '@/widgets/Icons/iconInventory'
+
+export type Items = {
 	title: string
-	icon: string
+	icon: iconDictionaryKey
 	url: string
 	children?: Items[]
 }
@@ -8,29 +10,29 @@ type Items = {
 const navItems: Items[] = [
 	{
 		title: '대시보드',
-		icon: '',
+		icon: 'dashboard',
 		url: '/dashboard',
 	},
 	{
 		title: '개발자 Q&A 관리',
-		icon: '',
+		icon: 'qna',
 		url: '',
 		children: [
 			{
 				title: '질문 관리',
-				icon: '',
+				icon: 'bulletPoint',
 				url: '/questions',
 			},
 			{
 				title: '답변 관리',
-				icon: '',
+				icon: 'bulletPoint',
 				url: '/answers',
 			},
 		],
 	},
 	{
 		title: '공지글 관리',
-		icon: '',
+		icon: 'notification',
 		url: '/notification',
 	},
 ]

@@ -3,6 +3,9 @@ import { FaMicrophone } from 'react-icons/fa6'
 import { HiChartSquareBar } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'
 
+export type iconDictionaryKey = keyof typeof iconDictionary
+export type iconSizeKey = keyof typeof iconSize
+
 export const baseStyle = {
 	display: 'inline-flex',
 	justifyContent: 'center',
