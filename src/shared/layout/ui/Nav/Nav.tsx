@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import './nav.css'
 
 import { css } from '@emotion/react'
