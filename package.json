@@ -18,6 +18,7 @@
 		"@chakra-ui/react": "^2.8.2",
 		"@emotion/react": "^11.11.4",
 		"@emotion/styled": "^11.11.0",
+		"@hookform/resolvers": "^3.3.4",
 		"@tanstack/react-query": "^5.28.4",
 		"@testboxlab/react-bubble-chart-d3": "^2.2.1",
 		"@types/d3": "^7.4.3",

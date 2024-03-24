@@ -6,10 +6,12 @@ import {
 	Input,
 } from '@chakra-ui/react'
 import { css } from '@emotion/react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
+
+import schema from './constants/schema'
 
 type SignInProps = {
 	email: string
@@ -21,11 +23,12 @@ function SignInPage() {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting },
-	} = useForm<SignInProps>()
-
-	const authorizationSchema = z.object({
-		email: z.string(),
-		password: z.string(),
+	} = useForm<SignInProps>({
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+		resolver: zodResolver(schema),
 	})
 
 	const onSubmit: SubmitHandler<SignInProps> = data => console.log(data)
@@ -69,6 +72,7 @@ function SignInPage() {
 				css={css({
 					width: '80%',
 				})}
+				noValidate
 			>
 				<Controller
 					name="email"
@@ -91,10 +95,11 @@ function SignInPage() {
 							{errors.email && (
 								<FormHelperText
 									css={css({
-										color: PALETTE['primary-700'],
+										color: PALETTE['pale-050'],
+										textAlign: 'left',
 									})}
 								>
-									이메일 유효성 검증 문구
+									{errors.email.message}
 								</FormHelperText>
 							)}
 						</FormControl>
@@ -121,10 +126,11 @@ function SignInPage() {
 							{errors.password && (
 								<FormHelperText
 									css={css({
-										color: PALETTE['primary-700'],
+										color: PALETTE['pale-050'],
+										textAlign: 'left',
 									})}
 								>
-									이메일 유효성 검증 문구
+									{errors.password.message}
 								</FormHelperText>
 							)}
 						</FormControl>
