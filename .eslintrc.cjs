@@ -12,6 +12,7 @@ module.exports = {
 		'prettier',
 		'@typescript-eslint',
 		'unused-imports',
+		'@emotion',
 	],
 	ignorePatterns: ['vite.config.ts', 'vite-env.d.ts'],
 	rules: {
@@ -29,6 +30,7 @@ module.exports = {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'unused-imports/no-unused-imports-ts': ['error'],
 		'react/react-in-jsx-scope': 'off',
+		'react/no-unknown-property': ['error', { ignore: ['css'] }],
 	},
 	overrides: [
 		{

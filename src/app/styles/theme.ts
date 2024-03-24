@@ -27,6 +27,7 @@ export const PALETTE = {
 	'dark-300': '#122D2E',
 	'dark-400': '#0C2525',
 	'dark-500': '#041B1B',
+	'dark-600': '#020F0F',
 }
 
 export const SPACING = {
@@ -53,22 +54,13 @@ export const BORDERWIDTH = {
 
 export const BORDERRADIUS = {
 	none: '0px',
-	xsmall: '1px',
-	small: '2px',
-	medium: '4px',
+	xsmall: '2px',
+	small: '4px',
+	medium: '6px',
 	large: '8px',
 	xlarge: '12px',
 	'2xlarge': '16px',
 	circle: '1000px',
-}
-
-export const ICONSIZE = {
-	xsmall: '8px',
-	small: '12px',
-	medium: '16px',
-	large: '20px',
-	xlarge: '24px',
-	'2xlarge': '32px',
 }
 
 export const FONTSIZE = {
@@ -82,6 +74,18 @@ export const FONTSIZE = {
 	'4xlarge': '36px',
 	'5xlarge': '48px',
 	'6xlarge': '60px',
+}
+
+export const FONTWEIGHT = {
+	thin: 100,
+	extralight: 200,
+	light: 300,
+	normal: 400,
+	medium: 500,
+	semibold: 600,
+	bold: 700,
+	extrabold: 800,
+	black: 900,
 }
 
 export const LINEHEIGHT = {
