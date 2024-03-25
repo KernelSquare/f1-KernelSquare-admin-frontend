@@ -1,5 +1,7 @@
 import './button.css'
 
+import { ReactNode } from 'react'
+
 interface ButtonProps {
 	/**
 	 * Is this the principal call to action on the page?
@@ -16,7 +18,11 @@ interface ButtonProps {
 	/**
 	 * Button contents
 	 */
-	label: string
+	children: ReactNode
+	/**
+	 * disabled
+	 */
+	disabled?: boolean
 	/**
 	 * Optional click handler
 	 */
@@ -30,7 +36,8 @@ export const Button = ({
 	primary = false,
 	size = 'medium',
 	backgroundColor,
-	label,
+	children,
+	disabled,
 	...props
 }: ButtonProps) => {
 	const mode = primary
@@ -44,9 +51,10 @@ export const Button = ({
 				' ',
 			)}
 			style={{ backgroundColor }}
+			disabled={disabled}
 			{...props}
 		>
-			{label}
+			{children}
 		</button>
 	)
 }

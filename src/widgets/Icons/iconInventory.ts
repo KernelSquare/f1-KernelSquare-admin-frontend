@@ -1,7 +1,11 @@
 import { FaCircle } from 'react-icons/fa'
 import { FaMicrophone } from 'react-icons/fa6'
 import { HiChartSquareBar } from 'react-icons/hi'
-import { IoMdChatboxes } from 'react-icons/io'
+import {
+	IoIosArrowBack,
+	IoIosArrowForward,
+	IoMdChatboxes,
+} from 'react-icons/io'
 import { MdDelete } from 'react-icons/md'
 export type iconDictionaryKey = keyof typeof iconDictionary
 export type iconSizeKey = keyof typeof iconSize
@@ -18,6 +22,8 @@ export const iconDictionary = {
 	notification: FaMicrophone,
 	bulletPoint: FaCircle,
 	delete: MdDelete,
+	arrowBack: IoIosArrowBack,
+	arrowForward: IoIosArrowForward,
 }
 
 export const iconSize = {
