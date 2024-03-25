@@ -44,8 +44,8 @@ export const data = {
 		{
 			label: 'Dataset',
 			data: labels.map(() => Math.random() * 10000),
-			borderColor: 'rgb(255, 99, 132)',
-			backgroundColor: 'rgba(255, 99, 132, 0.5)',
+			borderColor: PALETTE['primary-600'],
+			backgroundColor: PALETTE['primary-300'],
 		},
 	],
 }

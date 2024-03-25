@@ -26,6 +26,7 @@ const BubbleChart = () => {
 				css={css({
 					fontSize: FONTSIZE.xsmall,
 					marginTop: '5px',
+					color: PALETTE['pale-500'],
 				})}
 			>
 				채택된 기술 스택 순위

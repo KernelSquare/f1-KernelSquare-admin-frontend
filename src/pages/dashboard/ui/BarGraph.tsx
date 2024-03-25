@@ -35,7 +35,7 @@ export const data = {
 		{
 			label: 'Dataset 1',
 			data: labels.map(() => Math.random() * 10000),
-			backgroundColor: 'rgba(255, 99, 132, 0.5)',
+			backgroundColor: PALETTE['primary-600'],
 		},
 	],
 }
