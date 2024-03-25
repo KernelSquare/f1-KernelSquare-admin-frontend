@@ -1,3 +1,5 @@
+export type paletteKey = keyof typeof PALETTE
+
 export const PALETTE = {
 	// primary
 	'primary-050': '#EDFEFF',
@@ -28,6 +30,9 @@ export const PALETTE = {
 	'dark-400': '#0C2525',
 	'dark-500': '#041B1B',
 	'dark-600': '#020F0F',
+
+	// others
+	red: '#FF5656',
 }
 
 export const SPACING = {

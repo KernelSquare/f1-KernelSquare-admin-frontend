@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import { css, CSSObject } from '@emotion/react'
 
 import {
 	baseStyle,
@@ -11,16 +11,16 @@ import {
 type IconProps = {
 	iconName: iconDictionaryKey
 	iconSizeKey: iconSizeKey
-	iconColor: string
+	iconEmotionStyle?: CSSObject
 }
 
-const Icon = ({ iconName, iconSizeKey, iconColor }: IconProps) => {
+const Icon = ({ iconName, iconSizeKey, iconEmotionStyle }: IconProps) => {
 	const TargetIcon = iconDictionary[iconName]
 	const iconStyle = css`
 		${baseStyle}
+		${iconEmotionStyle}
 		.icon {
 			${iconSize[iconSizeKey]},
-			color: ${iconColor}
 		}
 	`
 
