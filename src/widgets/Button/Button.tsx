@@ -19,7 +19,7 @@ interface ButtonProps {
 	/**
 	 * Button contents
 	 */
-	children: ReactNode
+	children?: ReactNode
 	/**
 	 * disabled
 	 */

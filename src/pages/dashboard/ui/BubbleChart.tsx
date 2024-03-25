@@ -8,12 +8,16 @@ import BubbleChartComponent from '@/widgets/Charts/BubbleChart'
 const BubbleChart = () => {
 	useLayoutEffect(() => {
 		d3.selectAll('.value-text').attr('y', () => 30)
+		d3.selectAll('.bubble-chart').attr('transform', 'translate(20, -10)')
+		d3.selectAll('.bubble-chart').style('width', '600px')
+		d3.selectAll('.bubble-chart').style('height', '300px')
+		d3.selectAll('.legend').attr('transform', 'translate(440, 30)')
 	}, [])
 
 	return (
 		<div
 			css={css({
-				width: '668px',
+				width: '600px',
 				height: '320px',
 				border: '1px solid',
 				borderColor: PALETTE['primary-100'],
@@ -21,10 +25,15 @@ const BubbleChart = () => {
 			})}
 		>
 			<BubbleChartComponent
-				width={500}
-				height={400}
+				graph={{
+					zoom: 0.7,
+					offsetX: -0.05,
+					offsetY: 1,
+				}}
+				width={660}
+				height={300}
 				overflow={true}
-				padding={0} // optional value, number that set the padding between bubbles
+				padding={10} // optional value, number that set the padding between bubbles
 				showLegend={true} // optional value, pass false to disable the legend.
 				showValue={true}
 				legendPercentage={30} // number that represent the % of with that legend going to use.
@@ -54,7 +63,11 @@ const BubbleChart = () => {
 					{ label: 'Commerce', value: 1 },
 					{ label: 'AI', value: 3 },
 					{ label: 'Management', value: 5 },
-					{ label: 'Testing', value: 6 },
+					{ label: 'Commerce', value: 1 },
+					{ label: 'AI', value: 3 },
+					{ label: 'Management', value: 5 },
+					{ label: 'Commerce', value: 1 },
+					{ label: 'AI', value: 3 },
 					{ label: 'Mobile', value: 9 },
 					{ label: 'Conversion', value: 9 },
 				]}
