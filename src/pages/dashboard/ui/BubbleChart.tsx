@@ -8,10 +8,8 @@ import BubbleChartComponent from '@/widgets/Charts/BubbleChart'
 const BubbleChart = () => {
 	useLayoutEffect(() => {
 		d3.selectAll('.value-text').attr('y', () => 30)
-		d3.selectAll('.bubble-chart').attr('transform', 'translate(20, -10)')
-		d3.selectAll('.bubble-chart').style('width', '600px')
-		d3.selectAll('.bubble-chart').style('height', '300px')
-		d3.selectAll('.legend').attr('transform', 'translate(440, 30)')
+		d3.selectAll('.bubble-chart').attr('transform', 'translate(20, -15)')
+		d3.selectAll('.legend').attr('transform', 'translate(440, 10)')
 	}, [])
 
 	return (
@@ -24,14 +22,15 @@ const BubbleChart = () => {
 				borderRadius: BORDERRADIUS.large,
 			})}
 		>
+			<div>채택된 기술 스택 순위</div>
 			<BubbleChartComponent
 				graph={{
 					zoom: 0.7,
 					offsetX: -0.05,
 					offsetY: 1,
 				}}
-				width={660}
-				height={300}
+				width={640}
+				height={280}
 				overflow={true}
 				padding={10} // optional value, number that set the padding between bubbles
 				showLegend={true} // optional value, pass false to disable the legend.
