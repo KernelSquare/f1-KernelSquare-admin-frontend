@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import * as d3 from 'd3'
 import { useLayoutEffect } from 'react'
 
-import { BORDERRADIUS, PALETTE } from '@/app/styles/theme'
+import { BORDERRADIUS, FONTSIZE, PALETTE } from '@/app/styles/theme'
 import BubbleChartComponent from '@/widgets/Charts/BubbleChart'
 
 const BubbleChart = () => {
@@ -22,7 +22,14 @@ const BubbleChart = () => {
 				borderRadius: BORDERRADIUS.large,
 			})}
 		>
-			<div>채택된 기술 스택 순위</div>
+			<div
+				css={css({
+					fontSize: FONTSIZE.xsmall,
+					marginTop: '5px',
+				})}
+			>
+				채택된 기술 스택 순위
+			</div>
 			<BubbleChartComponent
 				graph={{
 					zoom: 0.7,
