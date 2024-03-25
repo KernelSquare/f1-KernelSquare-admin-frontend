@@ -24,7 +24,7 @@ const CustomAccordion = ({
 }: AccordionProps) => {
 	return (
 		<Accordion allowToggle={allowToggle}>
-			<AccordionItem key={Math.random() * 1000}>
+			<AccordionItem key={Math.random() * 1000} css={css({ border: 'none' })}>
 				<h2 css={css({ margin: '0px' })}>
 					<AccordionButton bg={'transparent'} css={css(buttonStyle)}>
 						{buttonChild}

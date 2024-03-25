@@ -11,6 +11,7 @@ import { css } from '@emotion/react'
 
 import { FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
 import Icon from '@/widgets/Icons/Icon'
+import Pagination from '@/widgets/Pagination/Pagination'
 
 function QuestionManagementPage() {
 	return (
@@ -61,6 +62,7 @@ function QuestionManagementPage() {
 					</Tbody>
 				</Table>
 			</TableContainer>
+			<Pagination totalData={100} dataLimit={10} />
 		</div>
 	)
 }

@@ -1,5 +1,6 @@
 import './button.css'
 
+import { SerializedStyles } from '@emotion/react'
 import { ReactNode } from 'react'
 
 interface ButtonProps {
@@ -24,6 +25,10 @@ interface ButtonProps {
 	 */
 	disabled?: boolean
 	/**
+	 * emotion style props
+	 */
+	buttonStyle?: SerializedStyles
+	/**
 	 * Optional click handler
 	 */
 	onClick?: () => void
@@ -38,6 +43,7 @@ export const Button = ({
 	backgroundColor,
 	children,
 	disabled,
+	buttonStyle,
 	...props
 }: ButtonProps) => {
 	const mode = primary
@@ -52,6 +58,7 @@ export const Button = ({
 			)}
 			style={{ backgroundColor }}
 			disabled={disabled}
+			css={buttonStyle}
 			{...props}
 		>
 			{children}
