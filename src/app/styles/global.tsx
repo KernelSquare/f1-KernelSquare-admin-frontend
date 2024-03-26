@@ -1,15 +1,12 @@
 import { extendTheme } from '@chakra-ui/react'
 import { css, Global } from '@emotion/react'
 
-import { PALETTE } from './theme'
-
 const globalStyle = css`
 	body {
 		font-family: 'Noto Sans KR', sans-serif;
-		background-color: ${PALETTE['dark-600']};
+		background-color: '#293333';
 		color: white;
 	}
-
 	ul {
 		list-style: none;
 	}
@@ -25,7 +22,7 @@ export const ChakraGlobalStyles = extendTheme({
 			html: { height: 'full' },
 			body: {
 				fontFamily: 'Noto Sans KR, sans-serif',
-				backgroundColor: `${PALETTE['dark-600']}`,
+				backgroundColor: '#293333',
 				color: 'white',
 			},
 			ul: {

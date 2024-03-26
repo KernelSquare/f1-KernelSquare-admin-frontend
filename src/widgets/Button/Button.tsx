@@ -1,5 +1,8 @@
 import './button.css'
 
+import { SerializedStyles } from '@emotion/react'
+import { ReactNode } from 'react'
+
 interface ButtonProps {
 	/**
 	 * Is this the principal call to action on the page?
@@ -16,7 +19,15 @@ interface ButtonProps {
 	/**
 	 * Button contents
 	 */
-	label: string
+	children?: ReactNode
+	/**
+	 * disabled
+	 */
+	disabled?: boolean
+	/**
+	 * emotion style props
+	 */
+	buttonStyle?: SerializedStyles
 	/**
 	 * Optional click handler
 	 */
@@ -30,7 +41,9 @@ export const Button = ({
 	primary = false,
 	size = 'medium',
 	backgroundColor,
-	label,
+	children,
+	disabled,
+	buttonStyle,
 	...props
 }: ButtonProps) => {
 	const mode = primary
@@ -44,9 +57,11 @@ export const Button = ({
 				' ',
 			)}
 			style={{ backgroundColor }}
+			disabled={disabled}
+			css={buttonStyle}
 			{...props}
 		>
-			{label}
+			{children}
 		</button>
 	)
 }

@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import { useNavigate } from 'react-router-dom'
 
-import { PALETTE } from '@/app/styles/theme'
 import Icon from '@/widgets/Icons/Icon'
 import type { iconSizeKey } from '@/widgets/Icons/iconInventory'
 
@@ -37,11 +36,7 @@ const NavTab = ({ item, depth, iconSize, isSelected }: NavTabProps) => {
 
 	return (
 		<li css={tabStyle(!!item.url)} onClick={() => handleLocation(item.url)}>
-			<Icon
-				iconName={item.icon}
-				iconSizeKey={iconSize}
-				iconColor={PALETTE['pale-050']}
-			/>
+			<Icon iconName={item.icon} iconSizeKey={iconSize} />
 			<div
 				css={css({
 					marginLeft: '10px',

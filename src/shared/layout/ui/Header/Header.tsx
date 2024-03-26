@@ -34,7 +34,6 @@ export const Header = ({ onCreateAccount }: HeaderProps) => (
 			<div>
 				<Button
 					onClick={onCreateAccount}
-					label=""
 					css={css({
 						borderRadius: BORDERRADIUS.circle,
 						width: '50px',
