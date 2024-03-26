@@ -3,8 +3,7 @@
 [커널스퀘어](kernelsquare.live)의 관리자 페이지 레포지토리입니다.
 
 ## 🛠️ STACKS 
-
-![Group 147 (3)](https://github.com/KernelSquare/f1-KernelSquare-admin-frontend/assets/123251211/a5a077e4-a3f0-4086-8be4-7ba8081c6e69)
+![Group 147 (4)](https://github.com/KernelSquare/f1-KernelSquare-admin-frontend/assets/123251211/d0ee69be-2c58-4bab-81f3-35ee4542f641)
 
 ## CONVENTIONS
 
