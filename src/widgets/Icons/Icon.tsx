@@ -12,9 +12,15 @@ type IconProps = {
 	iconName: iconDictionaryKey
 	iconSizeKey: iconSizeKey
 	iconEmotionStyle?: CSSObject
+	onClick?: () => void
 }
 
-const Icon = ({ iconName, iconSizeKey, iconEmotionStyle }: IconProps) => {
+const Icon = ({
+	iconName,
+	iconSizeKey,
+	iconEmotionStyle,
+	onClick,
+}: IconProps) => {
 	const TargetIcon = iconDictionary[iconName]
 	const iconStyle = css`
 		${baseStyle}
@@ -25,7 +31,7 @@ const Icon = ({ iconName, iconSizeKey, iconEmotionStyle }: IconProps) => {
 	`
 
 	return (
-		<div css={iconStyle}>
+		<div css={iconStyle} onClick={onClick}>
 			<TargetIcon className="icon" />
 		</div>
 	)

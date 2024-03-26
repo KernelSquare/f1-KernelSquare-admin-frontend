@@ -57,8 +57,6 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 				gap: '12px',
 				width: 'calc(100% - 400px)',
 				margin: '30px auto',
-				position: 'absolute',
-				bottom: 0,
 			})}
 		>
 			<Button
