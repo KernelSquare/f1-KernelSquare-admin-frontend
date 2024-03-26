@@ -8,12 +8,17 @@ import {
 	Tr,
 } from '@chakra-ui/react'
 import { css } from '@emotion/react'
+import { useNavigate } from 'react-router-dom'
 
 import { FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
+import MockNotices from '@/entities/mocks/data/_mockNotices'
+import { Button } from '@/widgets/Button/Button'
 import Icon from '@/widgets/Icons/Icon'
 import Pagination from '@/widgets/Pagination/Pagination'
 
 const NotificationManagementPage = () => {
+	const navigate = useNavigate()
+
 	return (
 		<div
 			css={css({
@@ -43,26 +48,50 @@ const NotificationManagementPage = () => {
 						</Tr>
 					</Thead>
 					<Tbody>
-						<Tr>
-							<Td>01</Td>
-							<Td>적절한 제목</Td>
-							<Td>Kernel1</Td>
-							<Td>2026.01.20</Td>
-							<Td>
-								<Icon
-									iconName="delete"
-									iconSizeKey="large"
-									iconEmotionStyle={{
-										cursor: 'pointer',
-										color: PALETTE.red,
-									}}
-								/>
-							</Td>
-						</Tr>
+						{MockNotices.map((notice, idx) => (
+							<Tr
+								key={notice.title}
+								css={css({ cursor: 'pointer' })}
+								onClick={() => navigate(`/notification/${idx + 1}`)}
+							>
+								<Td>{idx + 1}</Td>
+								<Td>{notice.title}</Td>
+								<Td>{notice.author}</Td>
+								<Td>{notice.created_date}</Td>
+								<Td>
+									<Icon
+										iconName="delete"
+										iconSizeKey="large"
+										iconEmotionStyle={{
+											cursor: 'pointer',
+											color: PALETTE.red,
+										}}
+									/>
+								</Td>
+							</Tr>
+						))}
 					</Tbody>
 				</Table>
 			</TableContainer>
-			<Pagination totalData={100} dataLimit={10} />
+			<div
+				css={css({
+					display: 'flex',
+					justifyItems: 'center',
+					bottom: 0,
+				})}
+			>
+				<Pagination totalData={50} dataLimit={10} />
+				<Button
+					buttonStyle={css({
+						background: PALETTE['pale-050'],
+						height: '32px',
+						margin: '30px 0',
+					})}
+					onClick={() => navigate('/notification/create')}
+				>
+					공지글 작성
+				</Button>
+			</div>
 		</div>
 	)
 }
