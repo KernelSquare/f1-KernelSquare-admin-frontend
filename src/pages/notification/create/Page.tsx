@@ -40,7 +40,7 @@ const CreateNotificationPage = () => {
 			css={css({
 				width: '1120px',
 				marginLeft: '160px',
-				height: 'calc(100vh - 240px)',
+				height: '80vh',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -77,11 +77,9 @@ const CreateNotificationPage = () => {
 								type="text"
 								{...field}
 								css={css({
-									background: 'transparent',
-									color: PALETTE['pale-050'],
-									border: 'none',
-									borderBottom: `1px solid ${PALETTE['pale-050']}`,
-									borderRadius: BORDERRADIUS.none,
+									color: PALETTE['dark-600'],
+									backgroundColor: PALETTE['pale-050'],
+									borderRadius: BORDERRADIUS.large,
 									':focus': {
 										outline: 'none',
 									},
@@ -114,8 +112,9 @@ const CreateNotificationPage = () => {
 							<Textarea
 								{...field}
 								css={css({
-									background: 'transparent',
-									color: PALETTE['pale-050'],
+									color: PALETTE['dark-600'],
+									backgroundColor: PALETTE['pale-050'],
+									borderRadius: BORDERRADIUS.large,
 									minHeight: '250px',
 								})}
 							/>

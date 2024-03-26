@@ -24,17 +24,35 @@ const NotificationManagementPage = () => {
 			css={css({
 				width: '1120px',
 				marginLeft: '160px',
-				height: 'calc(100vh - 240px)',
+				height: '80vh',
 			})}
 		>
 			<div
 				css={css({
-					fontSize: FONTSIZE['2xlarge'],
-					textAlign: 'left',
-					fontWeight: FONTWEIGHT.bold,
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					marginBottom: '30px',
 				})}
 			>
-				Notices
+				<div
+					css={css({
+						fontSize: FONTSIZE['2xlarge'],
+						textAlign: 'left',
+						fontWeight: FONTWEIGHT.bold,
+					})}
+				>
+					Notices
+				</div>
+				<Button
+					buttonStyle={css({
+						background: PALETTE['pale-050'],
+						height: '32px',
+					})}
+					onClick={() => navigate('/notification/create')}
+				>
+					공지글 작성
+				</Button>
 			</div>
 			<TableContainer>
 				<Table variant="simple">
@@ -81,16 +99,6 @@ const NotificationManagementPage = () => {
 				})}
 			>
 				<Pagination totalData={50} dataLimit={10} />
-				<Button
-					buttonStyle={css({
-						background: PALETTE['pale-050'],
-						height: '32px',
-						margin: '30px 0',
-					})}
-					onClick={() => navigate('/notification/create')}
-				>
-					공지글 작성
-				</Button>
 			</div>
 		</div>
 	)

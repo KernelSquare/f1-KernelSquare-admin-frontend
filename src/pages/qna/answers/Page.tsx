@@ -25,7 +25,7 @@ function AnswerManagementPage() {
 			css={css({
 				width: '1120px',
 				marginLeft: '160px',
-				height: 'calc(100vh - 240px)',
+				height: '80vh',
 			})}
 		>
 			<div
@@ -33,6 +33,7 @@ function AnswerManagementPage() {
 					fontSize: FONTSIZE['2xlarge'],
 					textAlign: 'left',
 					fontWeight: FONTWEIGHT.bold,
+					marginBottom: '30px',
 				})}
 			>
 				Answer
@@ -75,7 +76,15 @@ function AnswerManagementPage() {
 					</Tbody>
 				</Table>
 			</TableContainer>
-			<Pagination totalData={100} dataLimit={10} />
+			<div
+				css={css({
+					display: 'flex',
+					justifyItems: 'center',
+					bottom: 0,
+				})}
+			>
+				<Pagination totalData={50} dataLimit={10} />
+			</div>
 			<ConfirmDialog>
 				<AlertDialogHeader
 					fontSize="lg"

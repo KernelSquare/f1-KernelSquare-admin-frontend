@@ -52,10 +52,7 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 		<div
 			css={css({
 				display: 'flex',
-				justifyItems: 'center',
-				alignItems: 'center',
 				gap: '12px',
-				width: 'calc(100% - 400px)',
 				margin: '30px auto',
 			})}
 		>
