@@ -8,6 +8,7 @@ const config: StorybookConfig = {
 		'@storybook/addon-essentials',
 		'@chromatic-com/storybook',
 		'@storybook/addon-interactions',
+		'@storybook/addon-themes',
 	],
 	framework: {
 		name: '@storybook/react-vite',
@@ -16,5 +17,6 @@ const config: StorybookConfig = {
 	docs: {
 		autodocs: 'tag',
 	},
+	staticDirs: ['../public'],
 }
 export default config

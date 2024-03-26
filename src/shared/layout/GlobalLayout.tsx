@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom'
 
-import Header from './header/Header'
-import SideNav from './side-nav/SideNav'
+import { Header } from './ui/Header/Header'
+import Nav from './ui/Nav/Nav'
 
 const GlobalLayout = () => {
 	return (
 		<>
 			<Header />
-			<SideNav />
+			<Nav />
 			<Outlet />
 		</>
 	)

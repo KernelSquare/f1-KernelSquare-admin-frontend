@@ -3,16 +3,19 @@
 		"target": "ES2020",
 		"useDefineForClassFields": true,
 		"lib": ["ES2020", "DOM", "DOM.Iterable"],
-		"module": "CommonJS",
+		"module": "ESNext",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 
 		/* Bundler mode */
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
+		"moduleResolution": "Node",
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
+		// "jsxImportSource": "@emotion/react",
+		"types": ["@emotion/react/types/css-prop"],
 
 		/* Linting */
 		"strict": true,

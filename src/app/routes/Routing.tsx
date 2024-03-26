@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import DashboardPage from '@/pages/dashboard/Page'
+import CreateNotificationPage from '@/pages/notification/create/Page'
+import NotificationDetailPage from '@/pages/notification/detail/Page'
 import NotificationManagementPage from '@/pages/notification/Page'
 import AnswerManagementPage from '@/pages/qna/answers/Page'
-import QnAMainPage from '@/pages/qna/Page'
 import QuestionManagementPage from '@/pages/qna/questions/Page'
 import SignInPage from '@/pages/sign-in/Page'
 
@@ -21,15 +22,14 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <DashboardPage />,
 			},
+			{ path: '/questions', element: <QuestionManagementPage /> },
+			{ path: '/answers', element: <AnswerManagementPage /> },
 			{
-				path: 'qna',
-				element: <QnAMainPage />,
-				children: [
-					{ path: 'questions', element: <QuestionManagementPage /> },
-					{ path: 'answers', element: <AnswerManagementPage /> },
-				],
+				path: '/notification',
+				element: <NotificationManagementPage />,
 			},
-			{ path: '/notification', element: <NotificationManagementPage /> },
+			{ path: '/notification/create', element: <CreateNotificationPage /> },
+			{ path: '/notification/:id', element: <NotificationDetailPage /> },
 		],
 	},
 	{
