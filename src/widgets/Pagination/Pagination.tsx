@@ -30,10 +30,9 @@ const usePaginationStore = create<PaginationStoreType>(set => ({
 
 const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 	const pageCount = Math.ceil(totalData / dataLimit)
-	const { curPage, incPage, decPage } = usePaginationStore()
+	const { curPage, incPage, decPage, setPage } = usePaginationStore()
 	const buttonStyle = css({
 		border: 'none',
-		width: '32px',
 		height: '32px',
 		backgroundColor: PALETTE['dark-050'],
 		color: PALETTE['pale-050'],
@@ -56,12 +55,14 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 				justifyItems: 'center',
 				alignItems: 'center',
 				gap: '12px',
-				width: 'full',
+				width: 'calc(100% - 400px)',
 				margin: '30px auto',
+				position: 'absolute',
+				bottom: 0,
 			})}
 		>
 			<Button
-				onClick={() => decPage(curPage - (curPage - 1))}
+				onClick={() => decPage(curPage - 1)}
 				disabled={curPage === 1}
 				buttonStyle={buttonStyle}
 			>
@@ -69,11 +70,11 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 				<Icon iconName="arrowBack" iconSizeKey="small" />
 			</Button>
 			<Button
-				onClick={() => decPage(curPage - 1)}
+				onClick={() => decPage(1)}
 				disabled={curPage === 1}
 				buttonStyle={buttonStyle}
 			>
-				<Icon iconName="arrowBack" iconSizeKey="medium" />
+				<Icon iconName="arrowBack" iconSizeKey="small" />
 			</Button>
 			<div
 				css={css({
@@ -88,7 +89,7 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 					.map((_, i) => (
 						<Button
 							key={i + 1}
-							onClick={() => incPage(i + 1)}
+							onClick={() => setPage(i + 1)}
 							aria-current={curPage === i + 1 ? 'page' : null}
 							buttonStyle={buttonStyle}
 						>
@@ -97,19 +98,19 @@ const Pagination = ({ totalData, dataLimit }: PanigationProps) => {
 					))}
 			</div>
 			<Button
-				onClick={() => incPage(curPage + 1)}
+				onClick={() => incPage(1)}
 				disabled={curPage === pageCount}
 				buttonStyle={buttonStyle}
 			>
-				<Icon iconName="arrowForward" iconSizeKey="medium" />
+				<Icon iconName="arrowForward" iconSizeKey="small" />
 			</Button>
 			<Button
-				onClick={() => incPage(curPage + (pageCount - curPage))}
+				onClick={() => incPage(pageCount - curPage)}
 				disabled={curPage === pageCount}
 				buttonStyle={buttonStyle}
 			>
-				<Icon iconName="arrowForward" iconSizeKey="medium" />
-				<Icon iconName="arrowForward" iconSizeKey="medium" />
+				<Icon iconName="arrowForward" iconSizeKey="small" />
+				<Icon iconName="arrowForward" iconSizeKey="small" />
 			</Button>
 		</div>
 	)
