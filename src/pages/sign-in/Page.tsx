@@ -10,20 +10,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
+import type { LoginFormType } from '@/entities/interfaces/form'
 
 import schema from './constants/schema'
-
-type SignInProps = {
-	email: string
-	password: string
-}
 
 function SignInPage() {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting },
-	} = useForm<SignInProps>({
+	} = useForm<LoginFormType>({
 		defaultValues: {
 			email: '',
 			password: '',
@@ -31,7 +27,7 @@ function SignInPage() {
 		resolver: zodResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<SignInProps> = data => console.log(data)
+	const onSubmit: SubmitHandler<LoginFormType> = data => console.log(data)
 
 	return (
 		<div
