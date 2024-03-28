@@ -24,6 +24,7 @@ const useAuthCookies = () => {
 	const setAuthCookies = async (
 		accessToken: string,
 		refreshToken: string,
+		encryptedData: string,
 		expires: Date,
 	) =>
 		await Promise.all([
@@ -35,6 +36,10 @@ const useAuthCookies = () => {
 			setCookie(tokenKey.REFRESH_TOKEN, refreshToken, {
 				maxAge: 60 * 60 * 24 * 20,
 				httpOnly: true,
+			}),
+			setCookie(tokenKey.USER_DATA, encryptedData, {
+				path: '/',
+				expires,
 			}),
 		])
 

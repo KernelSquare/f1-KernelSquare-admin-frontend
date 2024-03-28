@@ -7,10 +7,15 @@ import {
 } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import dayjs from 'dayjs'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
 import type { LoginFormType } from '@/entities/interfaces/form'
+import useAuthCookies from '@/features/hooks/useAuthCookies'
+import useCrypto from '@/features/hooks/useCrypto'
+import { login } from '@/shared/apis/auth'
 
 import schema from './constants/schema'
 
@@ -18,7 +23,7 @@ function SignInPage() {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isSubmitting },
+		formState: { isSubmitSuccessful, errors, isSubmitting },
 	} = useForm<LoginFormType>({
 		defaultValues: {
 			email: '',
@@ -26,8 +31,43 @@ function SignInPage() {
 		},
 		resolver: zodResolver(schema),
 	})
+	const { setAuthCookies } = useAuthCookies()
+	const { encrypt } = useCrypto()
+	const navigate = useNavigate()
 
-	const onSubmit: SubmitHandler<LoginFormType> = data => console.log(data)
+	const onSubmit: SubmitHandler<LoginFormType> = async data => {
+		try {
+			const loginResponse = await login({
+				email: data.email,
+				password: data.password,
+			})
+
+			if (loginResponse.data) {
+				const { token_dto, ...userPayload } = loginResponse.data
+				const { access_token, refresh_token } = token_dto
+				const expireTime = dayjs().add(1, 'hours').startOf('second').toDate()
+
+				const stringifiedPayload = JSON.stringify({
+					...userPayload,
+					expires: expireTime.toJSON(),
+				})
+				const encryptedPayload = await encrypt(stringifiedPayload)
+
+				await setAuthCookies(
+					access_token,
+					refresh_token,
+					encryptedPayload,
+					expireTime,
+				)
+
+				navigate('/')
+			} else {
+				throw new Error('로그인 중 에러가 발생하였습니다.')
+			}
+		} catch (error) {
+			throw new Error('로그인 중 에러가 발생하였습니다.')
+		}
+	}
 
 	return (
 		<div
