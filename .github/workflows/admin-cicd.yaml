@@ -39,11 +39,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --delete
         env:
-          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
-        run: |
-          aws s3 sync \
-            ./dist s3://$BUCKET_NAME
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_NAME}}
+          SOURCE_DIR: 'dist'
 
       - name: Invalidate CloudFront Cache
         uses: chetan/invalidate-cloudfront-action@master
