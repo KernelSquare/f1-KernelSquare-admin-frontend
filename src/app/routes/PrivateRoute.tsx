@@ -1,12 +1,17 @@
 import { Navigate } from 'react-router-dom'
 
+import useUserDataStore from '@/features/hooks/store/useUserDataStore'
 import GlobalLayout from '@/shared/layout/GlobalLayout'
 
 const PrivateRoute = () => {
-	// 로그인 로직 구현 후 수정 예정
-	const isAuthorized = true
+	const { userData } = useUserDataStore()
+	const userRole = userData?.roles
 
-	return isAuthorized ? <GlobalLayout /> : <Navigate to="/signIn" />
+	return userRole?.includes('ROLE_ADMIN') ? (
+		<GlobalLayout />
+	) : (
+		<Navigate to="/signIn" />
+	)
 }
 
 export default PrivateRoute
