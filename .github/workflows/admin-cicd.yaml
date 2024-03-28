@@ -1,0 +1,53 @@
+name: Admin-CICD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        run: npm install pnpm -g
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: build
+        env:
+          VITE_API_MOCKING: ${{secrets.VITE_API_MOCKING}}
+          VITE_SERVER: ${{secrets.VITE_SERVER}}
+          VITE_CRYPTO_KEY_NAME: ${{secrets.VITE_CRYPTO_KEY_NAME}}
+          VITE_CRYPTO_KEY_LENGTH: ${{secrets.VITE_CRYPTO_KEY_LENGTH}}
+        run: pnpm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload to S3
+        env:
+          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
+        run: |
+          aws s3 sync \
+            ./build s3://$BUCKET_NAME
+
+      - name: Invalidate CloudFront Cache
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          AWS_DISTRIBUTION: ${{ secrets.AWS_DISTRIBUTION_ID }}
+          PATHS: '/index.html'
+        continue-on-error: true
