@@ -1,13 +1,10 @@
 import axios from 'axios'
 
-import useAuthCookies from '@/features/hooks/useAuthCookies'
+import useAuthCookies from '@/features/hooks/auth/useAuthCookies'
 
-const BASIC_SERVER = import.meta.env.VITE_SERVER
-const ADMIN_SERVER = import.meta.env.VITE_ADMIN_SERVER
-
-export const createAPIInstance = (isAdmin: boolean) => {
+export const createAPIInstance = () => {
 	const axiosInstance = axios.create({
-		baseURL: isAdmin ? ADMIN_SERVER : BASIC_SERVER,
+		baseURL: import.meta.env.VITE_SERVER,
 		withCredentials: true,
 	})
 
@@ -24,6 +21,6 @@ export const createAPIInstance = (isAdmin: boolean) => {
 	return axiosInstance
 }
 
-export const axiosInstance = createAPIInstance(false)
+const axiosInstance = createAPIInstance()
 
-export const axiosAdminInstance = createAPIInstance(true)
+export default axiosInstance
