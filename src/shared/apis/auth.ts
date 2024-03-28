@@ -4,7 +4,7 @@ import {
 } from '@/entities/interfaces/dto/auth/login.dto'
 
 import routeMap from '../constants/routeMap'
-import axiosInstance from './@core'
+import { axiosInstance } from './@core'
 
 export const login = async ({ email, password }: LoginRequest) => {
 	const res = await axiosInstance.post<unknown, LoginResponse, LoginRequest>(

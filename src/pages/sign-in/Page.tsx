@@ -23,7 +23,7 @@ function SignInPage() {
 	const {
 		handleSubmit,
 		control,
-		formState: { isSubmitSuccessful, errors, isSubmitting },
+		formState: { errors, isSubmitting },
 	} = useForm<LoginFormType>({
 		defaultValues: {
 			email: '',
