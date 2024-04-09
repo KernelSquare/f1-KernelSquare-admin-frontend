@@ -12,19 +12,18 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { BORDERRADIUS, FONTSIZE, FONTWEIGHT, PALETTE } from '@/app/styles/theme'
-import type { LoginFormType } from '@/entities/interfaces/form'
 import useAuthCookies from '@/features/hooks/auth/useAuthCookies'
 import useUserDataStore from '@/features/hooks/store/useUserDataStore'
 import { login } from '@/shared/apis/auth'
 
-import schema from './constants/schema'
+import schema, { LoginType } from './constants/schema'
 
 function SignInPage() {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting },
-	} = useForm<LoginFormType>({
+	} = useForm<LoginType>({
 		defaultValues: {
 			email: '',
 			password: '',
@@ -35,7 +34,7 @@ function SignInPage() {
 	const { setUserData } = useUserDataStore()
 	const navigate = useNavigate()
 
-	const onSubmit: SubmitHandler<LoginFormType> = async data => {
+	const onSubmit: SubmitHandler<LoginType> = async data => {
 		try {
 			const loginResponse = await login({
 				email: data.email,
