@@ -41,6 +41,8 @@ function SignInPage() {
 				password: data.password,
 			})
 
+			console.log('data', data)
+
 			if (loginResponse.data.data) {
 				const { token_dto, ...userPayload } = loginResponse.data.data
 				const { access_token, refresh_token } = token_dto
@@ -54,7 +56,7 @@ function SignInPage() {
 
 				navigate('/')
 			} else {
-				throw new Error('로그인 중 에러가 발생하였습니다.')
+				throw new Error('로그인 에러가 발생하였습니다.')
 			}
 		} catch (error) {
 			console.error(error)
